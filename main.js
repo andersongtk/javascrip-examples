@@ -1,100 +1,100 @@
 "use strict"
 
 /**
- * @param {String} firstName
- * @param {String} lastName
- * @param {Number} age
- * @param {String} position
+ * @param {string} firstName
+ * @param {string} lastName
+ * @param {number} age
+ * @param {string} position
  * @constructor
  */
 const WorkerEntity = function (firstName, lastName, age, position) {
 
     /**
-     * @type {null|Number}
+     * @type {null|number}
      * @private
      */
     this._id = null;
 
     /**
-     * @type {Number}
+     * @type {number}
      * @private
      */
     this._age = age;
 
     /**
-     * @type {String}
+     * @type {string}
      * @private
      */
     this._firstName = firstName;
 
     /**
-     * @type {String}
+     * @type {string}
      * @private
      */
     this._lastName = lastName;
 
     /**
-     * @type {String}
+     * @type {string}
      * @private
      */
     this._position = position;
 
     /**
-     * @type {null|Number}
+     * @type {null|number}
      * @private
      */
     this._createdAt = null;
 
     /**
-     * @type {null|Number}
+     * @type {null|number}
      * @private
      */
     this._updatedAt = null;
 
     /**
-     * @returns {Number}
+     * @returns {number}
      */
     this.getId = function () {
         return this._id;
     };
 
     /**
-     * @returns {String}
+     * @returns {string}
      */
     this.getFirstName = function () {
         return this._firstName;
     };
 
     /**
-     * @returns {String}
+     * @returns {string}
      */
     this.getLastName = function () {
         return this._lastName;
     };
 
     /**
-     * @returns {Number}
+     * @returns {number}
      */
     this.getAge = function () {
         return this._age;
     };
 
     /**
-     * @returns {String}
+     * @returns {string}
      */
     this.getPosition = function () {
         return this._position;
     };
 
     /**
-     * @returns {Number}
+     * @returns {number}
      */
     this.getCreatedAt = function () {
         return this._createdAt;
     };
 
     /**
-     * @returns {Number}
+     * @returns {number}
      */
     this.getUpdatedAt = function () {
         return this._updatedAt;
@@ -108,12 +108,12 @@ const WorkerEntity = function (firstName, lastName, age, position) {
 const WorkerRepository = function (storage) {
 
     /**
-     * @type {String}
+     * @type {string}
      */
     const key = 'workers'
 
     /**
-     * @param {Number} id
+     * @param {number} id
      * @returns {WorkerEntity|null}
      */
     this.findById = function (id) {
@@ -129,7 +129,7 @@ const WorkerRepository = function (storage) {
             this.delete(worker);
         }
 
-        worker["_id"] = worker["_id"] || Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+        worker["_id"] = worker["_id"] || this._buildId();
         worker["_createdAt"] = worker["_createdAt"] || Date.now();
         worker["_updatedAt"] = Date.now();
 
@@ -188,6 +188,14 @@ const WorkerRepository = function (storage) {
             "updated_at": worker.getUpdatedAt(),
         }))));
     };
+
+    /**
+     * @returns {number}
+     * @private
+     */
+    this._buildId = function () {
+        return Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+    }
 };
 
 const repository = new WorkerRepository(window.localStorage);
@@ -196,7 +204,7 @@ const popov = repository.save(new WorkerEntity("Andrey", "Popov", 36, "Manager")
 const otroh = repository.save(new WorkerEntity("Ivan", "Otroh", 33, "Admin"));
 const motuz = repository.save(new WorkerEntity("Ira", "Motuz", 33, "Devops"));
 
-setTimeout(function(){
+setTimeout(function () {
     repository.delete(popov);
     repository.delete(otroh);
     repository.delete(motuz);
