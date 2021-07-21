@@ -107,6 +107,9 @@ const WorkerEntity = function (firstName, lastName, age, position) {
  */
 const WorkerRepository = function (storage) {
 
+    /**
+     * @type {String}
+     */
     const key = 'workers'
 
     /**
@@ -186,7 +189,6 @@ const WorkerRepository = function (storage) {
         }))));
     };
 };
-
 
 const repository = new WorkerRepository(window.localStorage);
 
