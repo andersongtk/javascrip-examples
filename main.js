@@ -56,7 +56,7 @@ const WorkerEntity = function (firstName, lastName, age, position) {
      */
     this.getId = function () {
         return this._id;
-    }
+    };
 
     /**
      * @returns {String}
@@ -77,28 +77,28 @@ const WorkerEntity = function (firstName, lastName, age, position) {
      */
     this.getAge = function () {
         return this._age;
-    }
+    };
 
     /**
      * @returns {String}
      */
     this.getPosition = function () {
         return this._position;
-    }
+    };
 
     /**
      * @returns {Number}
      */
     this.getCreatedAt = function () {
         return this._createdAt;
-    }
+    };
 
     /**
      * @returns {Number}
      */
     this.getUpdatedAt = function () {
         return this._updatedAt;
-    }
+    };
 };
 
 /**
