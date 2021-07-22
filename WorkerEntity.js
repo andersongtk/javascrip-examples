@@ -45,7 +45,7 @@ function WorkerEntity(firstName, lastName, age, position) {
     };
 
     /**
-     * @param {String} value
+     * @param {string} value
      */
     this.setFirstName = function (value) {
         if (typeof value !== "string") {
