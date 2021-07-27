@@ -99,6 +99,7 @@ function WorkerRepository(storage) {
             throw new WorkerNotFoundException("Worker not found.");
         }
 
+        worker["_updatedAt"] = Date.now();
         workers.splice(index, 1);
         this._saveToStorage(workers);
     };
